@@ -1,0 +1,11 @@
+- hosts: hello
+  tasks:
+    - name: 上传tgz包到服务器
+      tags: upload_tgz
+      copy: src="/data/maven-package-demo/target/release/maven-package-demo-release.tar.gz" \
+            dest="/data"
+    - name: 解压tgz包
+      tags: tgz_x
+      shell: |
+        cd /data
+        tar -xvf maven-package-demo-release.tar.gz
