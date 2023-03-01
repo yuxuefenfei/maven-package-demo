@@ -1,0 +1,8 @@
+- hosts: hello
+  tasks:
+    - name: 重启应用
+      tags: restart_app_server
+      shell: |
+        killall java
+        cd /data/maven-package-demo
+        sh ./demo.sh start
