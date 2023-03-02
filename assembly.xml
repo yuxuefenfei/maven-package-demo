@@ -3,7 +3,7 @@
     <id>release</id>
     <formats>
         <!--zip/tar/tar.gz或tgz/tar.bz2或tbz2/tar.snappy/tar.xz或txz/jar/dir/war-->
-        <format>tar.gz</format>
+        <format>jar</format>
     </formats>
     <includeBaseDirectory>true</includeBaseDirectory>
 

@@ -31,19 +31,46 @@
 
     <build>
         <plugins>
+            <!--<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    &lt;!&ndash;assembly.xml文件位置&ndash;&gt;
+                    <descriptors>
+                        <descriptor>assembly.xml</descriptor>
+                    </descriptors>
+                    &lt;!&ndash;打包解压后的目录名称&ndash;&gt;
+                    <finalName>${project.artifactId}</finalName>
+                    &lt;!&ndash;打包到指定位置&ndash;&gt;
+                    <outputDirectory>${project.build.directory}/release</outputDirectory>
+
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        &lt;!&ndash;绑定到package生命周期阶段上&ndash;&gt;
+                        <phase>package</phase>
+                        <goals>
+                            &lt;!&ndash;只运行一次&ndash;&gt;
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
+
+            <!--打成jar包，含依赖-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
-                    <!--assembly.xml文件位置-->
-                    <descriptors>
-                        <descriptor>assembly.xml</descriptor>
-                    </descriptors>
-                    <!--打包解压后的目录名称-->
-                    <finalName>${project.artifactId}</finalName>
-                    <!--打包到指定位置-->
-                    <outputDirectory>${project.build.directory}/release</outputDirectory>
-
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>cn.wangwenzhu.MainApp</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
                 <executions>
                     <execution>
@@ -57,6 +84,20 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--xxx.jar中没有主清单属性-->
+            <!--<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>cn.wangwenzhu.MainApp</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>-->
         </plugins>
     </build>
 </project>
