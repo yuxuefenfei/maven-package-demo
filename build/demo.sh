@@ -14,6 +14,11 @@
 #
 # ----------------------------------------------------------------------
 
+export JAVA_HOME=/usr/local/jdk1.8.0_191
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$PATH:$JAVA_HOME/bin
+# 导入JAVA环境变量
+
 # 启动入口类，该脚本文件用于别的项目时要改这里
 MAIN_CLASS=cn.wangwenzhu.MainApp
 
@@ -39,6 +44,7 @@ CP=${APP_BASE_PATH}/config:${APP_BASE_PATH}/lib/*
 function start()
 {
     # 运行为后台进程，并在控制台输出信息
+    echo $PATH
     java -Xverify:none ${JAVA_OPTS} -cp ${CP} ${MAIN_CLASS} &
 
     # 运行为后台进程，并且不在控制台输出信息
